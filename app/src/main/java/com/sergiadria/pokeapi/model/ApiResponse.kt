@@ -1,4 +1,4 @@
-package com.sergiadria.pokeapi.models
+package com.sergiadria.pokeapi.model
 
 import com.google.gson.annotations.SerializedName
 
