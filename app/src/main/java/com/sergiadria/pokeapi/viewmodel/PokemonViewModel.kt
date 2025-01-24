@@ -19,7 +19,7 @@ class PokemonViewModel : ViewModel() {
 
     fun getPokemons() {
         CoroutineScope(Dispatchers.IO).launch {
-            val response = repository.getPokemons()
+            val response = repository.getPokemons(10000)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     _apiResponse.value = response.body()

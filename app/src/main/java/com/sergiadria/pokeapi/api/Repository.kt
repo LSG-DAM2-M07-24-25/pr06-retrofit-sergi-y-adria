@@ -4,5 +4,5 @@ class Repository {
 
     val apiInterface = APIInterface.create()
 
-    suspend fun getPokemons() = apiInterface.getPokemons()
+    suspend fun getPokemons(limit: Int) = apiInterface.getPokemons(limit)
 }
