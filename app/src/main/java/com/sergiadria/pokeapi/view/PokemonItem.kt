@@ -19,15 +19,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.sergiadria.pokeapi.model.Pokemon
 import java.util.Locale
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun PokemonItem(pokemon: Int) {
+fun PokemonItem(pokemon: Pokemon) {
     Card(
         border = BorderStroke(2.dp, Color.LightGray),
         shape = RoundedCornerShape(8.dp),
-        modifier = Modifier.padding(8.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
     ) {
         Row(
             modifier = Modifier
@@ -38,13 +41,14 @@ fun PokemonItem(pokemon: Int) {
             GlideImage(
                 model = pokemon.imageUrl,
                 contentDescription = pokemon.name,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.size(100.dp)
+                contentScale = ContentScale.Fit,
+                modifier = Modifier.size(80.dp) // Reduït per millor adaptació
             )
             Text(
-                text = pokemon.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() },
+                text = pokemon.name.replaceFirstChar { it.uppercaseChar() },
                 style = MaterialTheme.typography.bodyLarge,
-                textAlign = TextAlign.Center, modifier = Modifier.fillMaxSize()
+                textAlign = TextAlign.Start,
+                modifier = Modifier.padding(start = 16.dp)
             )
         }
     }
