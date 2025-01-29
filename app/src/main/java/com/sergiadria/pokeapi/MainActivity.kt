@@ -31,16 +31,15 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             PokeApiTheme {
-                Surface (
+                Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
-                ){
+                ) {
                     PokemonView(viewModel = pokemonViewModel)
                 }
             }
         }
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable
