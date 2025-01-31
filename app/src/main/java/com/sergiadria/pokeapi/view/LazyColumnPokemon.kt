@@ -18,7 +18,7 @@ fun PokemonList(pokemons: List<Pokemon>) {
         modifier = Modifier.fillMaxSize().padding(8.dp)
     ) {
         items(pokemons) { pokemon ->
-            PokemonItem(pokemon)
+            PokemonListItem(pokemon)
         }
     }
 }
@@ -30,7 +30,7 @@ fun PokemonGrid(pokemons: List<Pokemon>) {
         modifier = Modifier.fillMaxSize().padding(8.dp)
     ) {
         items(pokemons) { pokemon ->
-            PokemonItem(pokemon)
+            PokemonGridItem(pokemon)
         }
     }
 }

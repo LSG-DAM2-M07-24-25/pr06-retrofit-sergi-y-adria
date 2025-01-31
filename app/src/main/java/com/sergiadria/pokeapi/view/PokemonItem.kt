@@ -2,7 +2,6 @@ package com.sergiadria.pokeapi.view
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,11 +19,10 @@ import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.sergiadria.pokeapi.model.Pokemon
-import java.util.Locale
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun PokemonItem(pokemon: Pokemon) {
+fun PokemonListItem(pokemon: Pokemon) {
     Card(
         border = BorderStroke(2.dp, Color.LightGray),
         shape = RoundedCornerShape(8.dp),
@@ -51,5 +49,26 @@ fun PokemonItem(pokemon: Pokemon) {
                 modifier = Modifier.padding(start = 16.dp)
             )
         }
+    }
+}
+
+@OptIn(ExperimentalGlideComposeApi::class)
+@Composable
+fun PokemonGridItem(pokemon: Pokemon) {
+    Card(
+        border = BorderStroke(2.dp, Color.LightGray),
+        shape = RoundedCornerShape(8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        GlideImage(
+            model = pokemon.imageUrl,
+            contentDescription = pokemon.name,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(80.dp) // Reduït per millor adaptació
+                .align(Alignment.CenterHorizontally)
+        )
     }
 }
