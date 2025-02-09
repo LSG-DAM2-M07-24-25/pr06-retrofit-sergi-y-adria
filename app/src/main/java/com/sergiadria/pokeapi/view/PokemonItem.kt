@@ -22,13 +22,11 @@ import com.sergiadria.pokeapi.model.Pokemon
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun PokemonListItem(pokemon: Pokemon) {
+fun PokemonItem(pokemon: Pokemon, modifier: Modifier = Modifier) {
     Card(
         border = BorderStroke(2.dp, Color.LightGray),
         shape = RoundedCornerShape(8.dp),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
+        modifier = modifier // Utilitzem el `modifier` passat com a paràmetre
     ) {
         Row(
             modifier = Modifier
@@ -37,10 +35,10 @@ fun PokemonListItem(pokemon: Pokemon) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             GlideImage(
-                model = pokemon.imageUrl,
+                model = pokemon.imageUrl ?: "", // Si la URL és nul·la, es passa una cadena buida
                 contentDescription = pokemon.name,
                 contentScale = ContentScale.Fit,
-                modifier = Modifier.size(80.dp) // Reduït per millor adaptació
+                modifier = Modifier.size(80.dp)
             )
             Text(
                 text = pokemon.name.replaceFirstChar { it.uppercaseChar() },
@@ -49,26 +47,5 @@ fun PokemonListItem(pokemon: Pokemon) {
                 modifier = Modifier.padding(start = 16.dp)
             )
         }
-    }
-}
-
-@OptIn(ExperimentalGlideComposeApi::class)
-@Composable
-fun PokemonGridItem(pokemon: Pokemon) {
-    Card(
-        border = BorderStroke(2.dp, Color.LightGray),
-        shape = RoundedCornerShape(8.dp),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-    ) {
-        GlideImage(
-            model = pokemon.imageUrl,
-            contentDescription = pokemon.name,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(80.dp) // Reduït per millor adaptació
-                .align(Alignment.CenterHorizontally)
-        )
     }
 }
