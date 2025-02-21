@@ -44,7 +44,9 @@ class MainActivity : ComponentActivity() {
                         ) { backStackEntry ->
                             val pokemonName = backStackEntry.arguments?.getString("pokemonName") ?: "Sense nom"
                             val pokemon = pokemonViewModel.getPokemonByName(pokemonName) // Necessites obtenir el Pokémon per nom
-                            PokemonDetailScreen(pokemon = pokemon)
+                            if (pokemon != null) {
+                                PokemonDetailScreen(pokemon = pokemon)
+                            }
                         }
                     }
                 }
