@@ -1,3 +1,5 @@
+package com.sergiadria.marvelapi.components
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,24 +12,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment  // Importa aquesta línia
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.sergiadria.marvelapi.model.MarvelCharacter
-import com.sergiadria.marvelapi.view.CharacterItem
 import androidx.compose.foundation.layout.Box  // Afegeix aquesta importació per al Box
 import androidx.compose.foundation.lazy.items
 
 @Composable
-fun CharacterLazyColumn(navController: NavController, characters: List<MarvelCharacter>, modifier: Modifier = Modifier) {
+fun CharacterLazyColumn(characters: List<MarvelCharacter>, modifier: Modifier = Modifier, onClickCharacter: (MarvelCharacter) -> Unit) {
     Box(modifier = modifier.fillMaxSize()) {
         if (characters.isNotEmpty()) {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(8.dp)
             ) {
                 items(characters) { character ->
-                    CharacterItem(
+                    CharacterRow(
                         character = character,
                         modifier = Modifier.clickable {
-                            navController.navigate("character_detail/${character.id}")
+                            onClickCharacter(character)
                         }
                     )
                 }
@@ -42,7 +42,7 @@ fun CharacterLazyColumn(navController: NavController, characters: List<MarvelCha
 }
 
 @Composable
-fun CharacterGrid(navController: NavController, characters: List<MarvelCharacter>, modifier: Modifier = Modifier) {
+fun CharacterGrid(characters: List<MarvelCharacter>, modifier: Modifier = Modifier, onClickCharacter: (MarvelCharacter) -> Unit) {
     Box(modifier = modifier.fillMaxSize()) {
         if (characters.isNotEmpty()) {
             LazyVerticalGrid(
@@ -53,7 +53,7 @@ fun CharacterGrid(navController: NavController, characters: List<MarvelCharacter
                     CharacterItem(
                         character = character,
                         modifier = Modifier.clickable {
-                            navController.navigate("character_detail/${character.id}")
+                            onClickCharacter(character)
                         }
                     )
                 }

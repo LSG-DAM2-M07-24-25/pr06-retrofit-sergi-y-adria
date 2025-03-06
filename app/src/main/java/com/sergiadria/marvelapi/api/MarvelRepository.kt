@@ -4,7 +4,7 @@ import com.sergiadria.marvelapi.PUBLIC_KEY
 import com.sergiadria.marvelapi.model.ApiResponse
 import retrofit2.Response
 
-class Repository {
+class MarvelRepository {
 
     private val apiInterface = APIInterface.create()
     private val timestamp = System.currentTimeMillis().toString()

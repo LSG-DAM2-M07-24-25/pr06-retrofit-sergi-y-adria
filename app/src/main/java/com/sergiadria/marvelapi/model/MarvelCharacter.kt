@@ -10,7 +10,7 @@ data class MarvelCharacter(
     val stories: StoryList
 ) {
     val imageUrl: String
-        get() = "${thumbnail.path}.${thumbnail.extension}"
+        get() = "${thumbnail.path.replace("http", "https")}.${thumbnail.extension}"
 }
 
 data class Thumbnail(

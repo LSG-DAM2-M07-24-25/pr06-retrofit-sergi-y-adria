@@ -26,7 +26,7 @@ interface APIInterface {
     // Nou mètode per obtenir un personatge per nom
     @GET("characters")
     suspend fun getCharacterById(
-        @Query("name") name: String,
+        @Query("id") id: String,
         @Query("ts") ts: String,
         @Query("apikey") apiKey: String,
         @Query("hash") hash: String

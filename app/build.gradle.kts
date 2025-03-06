@@ -74,9 +74,9 @@ dependencies {
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
     //CORRUTINES
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-    //GLIDE
-    implementation("com.github.bumptech.glide:compose:1.0.0-beta01")
-    testImplementation("junit:junit:4.13.2")
+    //Coil
+    implementation("io.coil-kt.coil3:coil-compose:3.1.0")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.1.0")
     //TESTS
     testImplementation("io.mockk:mockk:1.12.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
