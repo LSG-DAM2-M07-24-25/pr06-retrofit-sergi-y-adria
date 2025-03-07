@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.sergiadria.marvelapi.R
 import com.sergiadria.marvelapi.model.MarvelCharacter
+import com.sergiadria.marvelapi.nav.Routes
 import com.sergiadria.marvelapi.viewmodel.MarvelListViewModel
 
 @Composable
@@ -45,7 +46,7 @@ fun CharacterListView(navController: NavController, viewModel: MarvelListViewMod
                     // Si la pantalla és ampla, mostrem una graella adaptativa
                     CharacterGrid(
                         onClickCharacter = { character ->
-                            navController.navigate("character/${character.id}")
+                            navController.navigate(Routes.DetailsCharacter.createRoute(character.id.toString()))
                         },
                         characters = marvelCharacters,
                         modifier = Modifier.fillMaxSize()
@@ -54,7 +55,7 @@ fun CharacterListView(navController: NavController, viewModel: MarvelListViewMod
                     // Si la pantalla és petita, mostrem una llista vertical
                     CharacterLazyColumn(
                         onClickCharacter = { character ->
-                            navController.navigate("character/${character.id}")
+                            navController.navigate(Routes.DetailsCharacter.createRoute(character.id.toString()))
                         },
                         characters = marvelCharacters,
                         modifier = Modifier.fillMaxSize()

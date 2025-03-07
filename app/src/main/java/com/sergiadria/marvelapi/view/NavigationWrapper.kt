@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.sergiadria.marvelapi.nav.Routes
 import com.sergiadria.marvelapi.viewmodel.MarvelDetailViewModel
 import com.sergiadria.marvelapi.viewmodel.MarvelListViewModel
 
@@ -20,16 +21,18 @@ fun NavigationWrapper() {
 
     NavHost(
         navController = navController,
-        startDestination = "character_list",
+        startDestination = Routes.CharacterList.route,
         modifier = Modifier.padding(top = 32.dp)
     ) {
-        composable("character_list") {
+        composable(Routes.CharacterList.route) {
             CharacterListView(navController = navController, viewModel = marvelListViewModel)
         }
 
         composable(
-            "character/{characterID}",
-            arguments = listOf(navArgument("characterID") { type = NavType.StringType })
+            Routes.DetailsCharacter.route,
+            arguments = listOf(
+                navArgument("characterID") { type = NavType.StringType }
+            )
         ) { backStackEntry ->
             val characterID = backStackEntry.arguments?.getString("characterID")
             val marvelDetailViewModel = MarvelDetailViewModel(characterID ?: "")
