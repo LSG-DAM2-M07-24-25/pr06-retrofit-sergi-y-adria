@@ -31,11 +31,11 @@ fun NavigationWrapper() {
         composable(
             Routes.DetailsCharacter.route,
             arguments = listOf(
-                navArgument("characterID") { type = NavType.StringType }
+                navArgument("characterID") { type = NavType.IntType }
             )
         ) { backStackEntry ->
-            val characterID = backStackEntry.arguments?.getString("characterID")
-            val marvelDetailViewModel = MarvelDetailViewModel(characterID ?: "")
+            val characterID = backStackEntry.arguments?.getInt("characterID")
+            val marvelDetailViewModel = MarvelDetailViewModel(characterID ?: 0)
 
             CharacterDetailScreen(viewModel = marvelDetailViewModel)
         }

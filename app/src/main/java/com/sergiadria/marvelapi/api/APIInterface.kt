@@ -17,19 +17,31 @@ interface APIInterface {
     // Obtenir llistat de personatges Marvel amb límit
     @GET("characters")
     suspend fun getCharacters(
-        @Query("limit") limit: Int,
-        @Query("ts") ts: String,
-        @Query("apikey") apiKey: String,
-        @Query("hash") hash: String
+        @Query("limit") limit: Int = 30,
+        @Query("offset") offset: Int = 0,
+        @Query("ts") ts: String = System.currentTimeMillis().toString(),
+        @Query("apikey") apiKey: String = PUBLIC_KEY,
+        @Query("hash") hash: String = generateHash()
     ): Response<ApiResponse>
 
     // Nou mètode per obtenir un personatge per nom
     @GET("characters")
     suspend fun getCharacterById(
-        @Query("id") id: String,
-        @Query("ts") ts: String,
-        @Query("apikey") apiKey: String,
-        @Query("hash") hash: String
+        @Query("id") id: Int,
+        @Query("limit") limit: Int = 30,
+        @Query("ts") ts: String = System.currentTimeMillis().toString(),
+        @Query("apikey") apiKey: String = PUBLIC_KEY,
+        @Query("hash") hash: String = generateHash()
+    ): Response<ApiResponse>
+
+    // Nou mètode per obtenir un personatge per nom
+    @GET("characters")
+    suspend fun searchCharactersByName(
+        @Query("nameStartsWith") nameStartsWith: String,
+        @Query("limit") limit: Int = 30,
+        @Query("ts") ts: String = System.currentTimeMillis().toString(),
+        @Query("apikey") apiKey: String = PUBLIC_KEY,
+        @Query("hash") hash: String = generateHash()
     ): Response<ApiResponse>
 
     companion object {

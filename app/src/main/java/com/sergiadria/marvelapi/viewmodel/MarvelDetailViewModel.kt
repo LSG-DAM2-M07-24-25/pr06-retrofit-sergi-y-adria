@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MarvelDetailViewModel(id: String) : ViewModel() {
+class MarvelDetailViewModel(id: Int) : ViewModel() {
     private val marvelRepository = MarvelRepository()
     private val _loading = MutableLiveData(true)
     val loading = _loading
@@ -28,7 +28,7 @@ class MarvelDetailViewModel(id: String) : ViewModel() {
     }
 
     // Funció per obtenir un personatge per nom
-    suspend fun getCharacterById(id: String) {
+    suspend fun getCharacterById(id: Int) {
         val response = marvelRepository.getCharacterById(id)
         if (response.isSuccessful) {
             _characterDetails.value = response.body()
