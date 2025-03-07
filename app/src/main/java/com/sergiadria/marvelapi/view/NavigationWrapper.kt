@@ -22,7 +22,7 @@ fun NavigationWrapper() {
     NavHost(
         navController = navController,
         startDestination = Routes.CharacterList.route,
-        modifier = Modifier.padding(top = 32.dp)
+        modifier = Modifier.padding(vertical = 32.dp, horizontal = 16.dp)
     ) {
         composable(Routes.CharacterList.route) {
             CharacterListView(navController = navController, viewModel = marvelListViewModel)
