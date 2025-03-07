@@ -1,6 +1,9 @@
 package com.sergiadria.marvelapi.view
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,7 +18,11 @@ fun NavigationWrapper() {
 
     val marvelListViewModel = MarvelListViewModel()
 
-    NavHost(navController, startDestination = "character_list") {
+    NavHost(
+        navController = navController,
+        startDestination = "character_list",
+        modifier = Modifier.padding(top = 32.dp)
+    ) {
         composable("character_list") {
             CharacterListView(navController = navController, viewModel = marvelListViewModel)
         }

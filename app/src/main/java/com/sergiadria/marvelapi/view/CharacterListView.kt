@@ -10,7 +10,6 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -19,22 +18,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.sergiadria.marvelapi.R
-import com.sergiadria.marvelapi.model.ApiResponse
-import com.sergiadria.marvelapi.model.MarvelApiData
+import com.sergiadria.marvelapi.model.MarvelCharacter
 import com.sergiadria.marvelapi.viewmodel.MarvelListViewModel
 
 @Composable
 fun CharacterListView(navController: NavController, viewModel: MarvelListViewModel) {
     // Observant l'estat de la càrrega i la resposta de l'API
     val isLoading: Boolean by viewModel.loading.observeAsState(true)
-    val apiResponse: ApiResponse by viewModel.apiResponse.observeAsState(
-        ApiResponse(
-            MarvelApiData(
-                0,
-                emptyList()
-            )
-        )
-    )
+    val marvelCharacters: List<MarvelCharacter> by viewModel.marvelCharacters.observeAsState(emptyList())
 
     Column (modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(modifier = Modifier.weight(3f))
@@ -56,7 +47,7 @@ fun CharacterListView(navController: NavController, viewModel: MarvelListViewMod
                         onClickCharacter = { character ->
                             navController.navigate("character/${character.id}")
                         },
-                        characters = apiResponse.data.results,
+                        characters = marvelCharacters,
                         modifier = Modifier.fillMaxSize()
                     )
                 } else {
@@ -65,7 +56,7 @@ fun CharacterListView(navController: NavController, viewModel: MarvelListViewMod
                         onClickCharacter = { character ->
                             navController.navigate("character/${character.id}")
                         },
-                        characters = apiResponse.data.results,
+                        characters = marvelCharacters,
                         modifier = Modifier.fillMaxSize()
                     )
                 }

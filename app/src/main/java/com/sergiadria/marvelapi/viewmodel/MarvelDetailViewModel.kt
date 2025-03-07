@@ -31,7 +31,7 @@ class MarvelDetailViewModel(id: String) : ViewModel() {
     suspend fun getCharacterById(id: String) {
         val response = marvelRepository.getCharacterById(id)
         if (response.isSuccessful) {
-            _characterDetails.value = response.body()?.data?.results?.firstOrNull()
+            _characterDetails.value = response.body()
             _loading.value = false
         } else {
             _loading.value = false
